@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kaybolan ve Beliren Kalp Animasyonu</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fadingHeartCanvas" width="500" height="500"></canvas>
+    <script>
+        var canvas = document.getElementById('fadingHeartCanvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+        var angle = 0;
+        var opacity = 1; 
+        var fadeDirection = -0.01; 
+
+        function drawFadingHeart() {
+            ctx.clearRect(0, 0, width, height);
+
+            
+            opacity += fadeDirection;
+
+            
+            if (opacity <= 0) {
+                opacity = 0;
+                fadeDirection = 0.01; // Belirme yönüne geç
+            } else if (opacity >= 1) {
+                opacity = 1;
+                fadeDirection = -0.01; // Kaybolma yönüne geç
+            }
+
+            ctx.strokeStyle = 'rgba(255, 0, 0, ' + opacity + ')'; // Kırmızı rengin şeffaf hali
+            ctx.lineWidth = 1;
+
+            var centerX = width / 2;
+            var centerY = height / 2;
+            var radius = 1;
+            var numLines = 360;
+
+            for (let i = 0; i < numLines; i++) {
+                let angle = (i / numLines) * Math.PI * 2;
+                let x = radius * 16 * Math.pow(Math.sin(angle), 3);
+                let y = -radius * (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(centerX + x * 10, centerY + y * 10);
+                ctx.stroke();
+            }
+
+            requestAnimationFrame(drawFadingHeart);
+        }
+
+        drawFadingHeart();
+    </script>
+</body>
+</html>
+

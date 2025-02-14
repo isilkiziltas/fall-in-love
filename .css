@@ -1,0 +1,7 @@
+#kalpAlani {
+    width: 500px;
+    height: 500px;
+    background-color: black;
+    position: relative;
+    overflow: hidden; /* Çizgilerin dışarı taşmasını engelle */
+}
