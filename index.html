@@ -36,13 +36,13 @@
             
             if (opacity <= 0) {
                 opacity = 0;
-                fadeDirection = 0.01; // Belirme yönüne geç
+                fadeDirection = 0.01; 
             } else if (opacity >= 1) {
                 opacity = 1;
-                fadeDirection = -0.01; // Kaybolma yönüne geç
+                fadeDirection = -0.01; 
             }
 
-            ctx.strokeStyle = 'rgba(255, 0, 0, ' + opacity + ')'; // Kırmızı rengin şeffaf hali
+            ctx.strokeStyle = 'rgba(255, 0, 0, ' + opacity + ')'; 
             ctx.lineWidth = 1;
 
             var centerX = width / 2;
